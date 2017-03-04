@@ -1,5 +1,9 @@
 package pkg;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class ExampleObject {
 
 	String s1 = "First string";
@@ -10,6 +14,12 @@ public class ExampleObject {
 	
 	boolean b1 = true;
 	boolean b2 = false;
+	
+	int[] intArray = {1, 2, 3};
+	List<Integer> intList = Arrays.asList(4, 5, 6);
+	
+	String[] stringArray = {"a", "b", "c"};
+	List<String> stringList = Arrays.asList("d", "e", "f");
 	
 	public ExampleObject(){
 		

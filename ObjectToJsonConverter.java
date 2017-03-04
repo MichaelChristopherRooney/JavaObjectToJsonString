@@ -1,5 +1,6 @@
 package pkg;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.List;
 
@@ -28,6 +29,22 @@ public class ObjectToJsonConverter {
 			json.append("\"");
 			json.append(o);
 			json.append("\"");
+		} else if(o.getClass().isArray()){
+			json.append("[");
+			for(int i = 0; i < Array.getLength(o); i++){
+				convert(Array.get(o, i));
+				json.append(", ");
+			}
+			json.delete(json.length() - 2, json.length()); // remove trailing ", "
+			json.append("]");
+		} else if(o instanceof List){
+			json.append("[");
+			for(Object n : (List) o){
+				convert(n);
+				json.append(", ");
+			}
+			json.delete(json.length() - 2, json.length()); // remove trailing ", "
+			json.append("]");
 		} else { // it's an object with fields
 			json.append("{");
 			for(Field f : o.getClass().getDeclaredFields()){
